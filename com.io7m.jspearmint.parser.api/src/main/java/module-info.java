@@ -15,16 +15,15 @@
  */
 
 /**
- * SPIR-V toolkit (JSON registry handling)
+ * SPIR-V toolkit (Parser API)
  */
 
-module com.io7m.jspearmint.json.registry
+module com.io7m.jspearmint.parser.api
 {
+  requires static com.io7m.immutables.style;
+  requires static org.immutables.value;
   requires static org.osgi.annotation.bundle;
   requires static org.osgi.annotation.versioning;
 
-  requires com.fasterxml.jackson.annotation;
-  requires com.fasterxml.jackson.databind;
-
-  exports com.io7m.jspearmint.json_registry;
+  exports com.io7m.jspearmint.parser.api;
 }

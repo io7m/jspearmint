@@ -15,16 +15,20 @@
  */
 
 /**
- * SPIR-V toolkit (JSON registry handling)
+ * SPIR-V toolkit (Parser API)
  */
 
-module com.io7m.jspearmint.json.registry
+module com.io7m.jspearmint.parser.vanilla
 {
   requires static org.osgi.annotation.bundle;
   requires static org.osgi.annotation.versioning;
+  requires static org.osgi.service.component.annotations;
 
-  requires com.fasterxml.jackson.annotation;
-  requires com.fasterxml.jackson.databind;
+  requires transitive com.io7m.jbssio.api;
+  requires transitive com.io7m.jbssio.vanilla;
+  requires transitive com.io7m.jspearmint.parser.api;
 
-  exports com.io7m.jspearmint.json_registry;
+  requires org.slf4j;
+
+  exports com.io7m.jspearmint.parser.vanilla;
 }

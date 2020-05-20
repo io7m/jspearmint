@@ -22,6 +22,8 @@
   <modules>
     <module>com.io7m.jspearmint.json_registry</module>
     <module>com.io7m.jspearmint.tests</module>
+    <module>com.io7m.jspearmint.parser.api</module>
+    <module>com.io7m.jspearmint.parser.vanilla</module>
   </modules>
 
   <properties>
@@ -31,6 +33,7 @@
     <io7m.api.previousVersion>0.0.1-SNAPSHOT</io7m.api.previousVersion>
     <junit.version>5.7.0-M1</junit.version>
     <jackson.version>2.10.2</jackson.version>
+    <com.io7m.jbssio.version>0.0.2</com.io7m.jbssio.version>
   </properties>
 
   <licenses>
@@ -90,9 +93,29 @@
         <version>1.1.0</version>
       </dependency>
       <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.service.component.annotations</artifactId>
+        <version>1.4.0</version>
+      </dependency>
+      <dependency>
         <groupId>org.immutables</groupId>
         <artifactId>value</artifactId>
         <version>${io7m.org.immutables.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.io7m.immutables.style</groupId>
+        <artifactId>com.io7m.immutables.style</artifactId>
+        <version>0.0.1</version>
+      </dependency>
+      <dependency>
+        <groupId>com.io7m.jbssio</groupId>
+        <artifactId>com.io7m.jbssio.vanilla</artifactId>
+        <version>${com.io7m.jbssio.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.io7m.jbssio</groupId>
+        <artifactId>com.io7m.jbssio.api</artifactId>
+        <version>${com.io7m.jbssio.version}</version>
       </dependency>
       <dependency>
         <groupId>org.slf4j</groupId>

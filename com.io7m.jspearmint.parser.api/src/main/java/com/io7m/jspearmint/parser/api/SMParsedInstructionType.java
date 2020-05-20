@@ -14,17 +14,36 @@
  * IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+package com.io7m.jspearmint.parser.api;
+
+import com.io7m.immutables.styles.ImmutablesStyleType;
+import org.immutables.value.Value;
+
+import java.util.List;
+
 /**
- * SPIR-V toolkit (JSON registry handling)
+ * A parsed instruction.
  */
 
-module com.io7m.jspearmint.json.registry
+@ImmutablesStyleType
+@Value.Immutable
+public interface SMParsedInstructionType
 {
-  requires static org.osgi.annotation.bundle;
-  requires static org.osgi.annotation.versioning;
+  /**
+   * @return The number of words used by this instruction
+   */
 
-  requires com.fasterxml.jackson.annotation;
-  requires com.fasterxml.jackson.databind;
+  long wordCount();
 
-  exports com.io7m.jspearmint.json_registry;
+  /**
+   * @return The opcode of this instruction
+   */
+
+  long opCode();
+
+  /**
+   * @return The operands of this instruction
+   */
+
+  List<Long> operands();
 }

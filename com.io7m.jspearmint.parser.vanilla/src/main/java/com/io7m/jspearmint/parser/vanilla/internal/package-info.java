@@ -15,16 +15,8 @@
  */
 
 /**
- * SPIR-V toolkit (JSON registry handling)
+ * SPIR-V toolkit (Vanilla parser implementation internal classes)
  */
 
-module com.io7m.jspearmint.json.registry
-{
-  requires static org.osgi.annotation.bundle;
-  requires static org.osgi.annotation.versioning;
 
-  requires com.fasterxml.jackson.annotation;
-  requires com.fasterxml.jackson.databind;
-
-  exports com.io7m.jspearmint.json_registry;
-}
+package com.io7m.jspearmint.parser.vanilla.internal;

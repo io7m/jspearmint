@@ -14,17 +14,19 @@
  * IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-/**
- * SPIR-V toolkit (JSON registry handling)
- */
+package com.io7m.jspearmint.tests;
 
-module com.io7m.jspearmint.json.registry
+import com.io7m.jspearmint.parser.api.SMParsedInstruction;
+import nl.jqno.equalsverifier.EqualsVerifier;
+import org.junit.jupiter.api.Test;
+
+public final class SMEqualityTest
 {
-  requires static org.osgi.annotation.bundle;
-  requires static org.osgi.annotation.versioning;
-
-  requires com.fasterxml.jackson.annotation;
-  requires com.fasterxml.jackson.databind;
-
-  exports com.io7m.jspearmint.json_registry;
+  @Test
+  public void testSMParsedInstruction()
+  {
+    EqualsVerifier.forClass(SMParsedInstruction.class)
+      .withNonnullFields("operands")
+      .verify();
+  }
 }

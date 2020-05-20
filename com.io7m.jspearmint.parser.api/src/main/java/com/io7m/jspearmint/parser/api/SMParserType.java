@@ -14,17 +14,27 @@
  * IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-/**
- * SPIR-V toolkit (JSON registry handling)
- */
+package com.io7m.jspearmint.parser.api;
 
-module com.io7m.jspearmint.json.registry
+import java.io.Closeable;
+import java.util.List;
+import java.util.Optional;
+
+public interface SMParserType extends Closeable
 {
-  requires static org.osgi.annotation.bundle;
-  requires static org.osgi.annotation.versioning;
+  long rawVersionNumber();
 
-  requires com.fasterxml.jackson.annotation;
-  requires com.fasterxml.jackson.databind;
+  long versionMajor();
 
-  exports com.io7m.jspearmint.json_registry;
+  long versionMinor();
+
+  long generatorMagicNumber();
+
+  long idBound();
+
+  Optional<SMParsedInstruction> parseNextInstruction()
+    throws SMParseException;
+
+  List<SMParsedInstruction> parseAllInstructions()
+    throws SMParseException;
 }
