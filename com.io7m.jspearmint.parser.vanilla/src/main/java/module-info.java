@@ -25,8 +25,9 @@ module com.io7m.jspearmint.parser.vanilla
   requires static org.osgi.service.component.annotations;
 
   requires transitive com.io7m.jbssio.api;
-  requires transitive com.io7m.jbssio.vanilla;
   requires transitive com.io7m.jspearmint.parser.api;
+
+  uses com.io7m.jbssio.api.BSSReaderProviderType;
 
   requires org.slf4j;
 

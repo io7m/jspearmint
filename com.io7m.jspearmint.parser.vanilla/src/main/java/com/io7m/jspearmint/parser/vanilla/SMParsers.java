@@ -17,7 +17,6 @@
 package com.io7m.jspearmint.parser.vanilla;
 
 import com.io7m.jbssio.api.BSSReaderProviderType;
-import com.io7m.jbssio.vanilla.BSSReaders;
 import com.io7m.jspearmint.parser.api.SMParseException;
 import com.io7m.jspearmint.parser.api.SMParserProviderType;
 import com.io7m.jspearmint.parser.api.SMParserType;
@@ -29,6 +28,7 @@ import java.io.InputStream;
 import java.math.BigInteger;
 import java.net.URI;
 import java.util.Objects;
+import java.util.ServiceLoader;
 
 /**
  * The default {@link SMParserProviderType} implementation.
@@ -57,7 +57,14 @@ public final class SMParsers implements SMParserProviderType
 
   public SMParsers()
   {
-    this(new BSSReaders());
+    this(
+      ServiceLoader.load(BSSReaderProviderType.class)
+        .findFirst()
+        .orElseThrow(() -> new IllegalStateException(
+          String.format(
+            "No available implementations of type %s",
+            BSSReaderProviderType.class.getCanonicalName())))
+    );
   }
 
   @Override

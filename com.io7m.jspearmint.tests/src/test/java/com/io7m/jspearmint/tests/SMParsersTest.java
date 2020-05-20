@@ -16,6 +16,7 @@
 
 package com.io7m.jspearmint.tests;
 
+import com.io7m.jbssio.vanilla.BSSReaders;
 import com.io7m.jspearmint.parser.api.SMParserProviderType;
 import com.io7m.jspearmint.parser.vanilla.SMParsers;
 
@@ -24,6 +25,6 @@ public final class SMParsersTest extends SMParserContract
   @Override
   protected SMParserProviderType parsers()
   {
-    return new SMParsers();
+    return new SMParsers(new BSSReaders());
   }
 }
