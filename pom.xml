@@ -24,6 +24,8 @@
     <module>com.io7m.jspearmint.tests</module>
     <module>com.io7m.jspearmint.parser.api</module>
     <module>com.io7m.jspearmint.parser.vanilla</module>
+    <module>com.io7m.jspearmint.generation</module>
+    <module>com.io7m.jspearmint.api</module>
   </modules>
 
   <properties>
@@ -133,21 +135,6 @@
         <version>2.6</version>
       </dependency>
       <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-lang3</artifactId>
-        <version>3.10</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.httpcomponents.client5</groupId>
-        <artifactId>httpclient5</artifactId>
-        <version>${httpclient5.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.httpcomponents.core5</groupId>
-        <artifactId>httpcore5</artifactId>
-        <version>${httpclient5.version}</version>
-      </dependency>
-      <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-api</artifactId>
         <version>${junit.version}</version>
@@ -156,11 +143,6 @@
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-engine</artifactId>
         <version>${junit.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mock-server</groupId>
-        <artifactId>mockserver-netty</artifactId>
-        <version>5.10.0</version>
       </dependency>
       <dependency>
         <groupId>com.beust</groupId>
@@ -191,6 +173,11 @@
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-annotations</artifactId>
         <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.squareup</groupId>
+        <artifactId>javapoet</artifactId>
+        <version>1.12.1</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

@@ -14,42 +14,8 @@
  * IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package com.io7m.jspearmint.parser.api;
-
-import com.io7m.immutables.styles.ImmutablesStyleType;
-import org.immutables.value.Value;
-
-import java.util.List;
-
 /**
- * A parsed instruction.
+ * SPIR-V toolkit (Source generation)
  */
 
-@ImmutablesStyleType
-@Value.Immutable
-public interface SMParsedInstructionType
-{
-  /**
-   * @return The number of words used by this instruction
-   */
-
-  long wordCount();
-
-  /**
-   * @return The opcode of this instruction
-   */
-
-  long opCode();
-
-  /**
-   * @return The operands of this instruction
-   */
-
-  List<Long> operands();
-
-  /**
-   * @return The byte offset of the instruction
-   */
-
-  long byteOffset();
-}
+package com.io7m.jspearmint.generation;

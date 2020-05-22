@@ -4,3 +4,6 @@
 [submodule ".jenkins"]
 	path = .jenkins
 	url = https://www.github.com/io7m/jenkinsfiles
+[submodule "com.io7m.jspearmint.generation/src/main/resources/com/io7m/jspearmint/generation/spirv_headers"]
+	path = com.io7m.jspearmint.generation/src/main/resources/com/io7m/jspearmint/generation/spirv_headers
+	url = https://github.com/KhronosGroup/SPIRV-Headers

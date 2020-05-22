@@ -200,6 +200,8 @@ public final class SMParser implements SMParserType
     throws SMParseException
   {
     try {
+      final long offset = this.reader.offsetCurrentAbsolute();
+
       final long instructionHeader;
       try {
         instructionHeader = this.readWord("instructionHeader");
@@ -227,6 +229,7 @@ public final class SMParser implements SMParserType
 
       return Optional.of(
         SMParsedInstruction.builder()
+          .setByteOffset(offset)
           .setOpCode(opCode)
           .setWordCount(wordCount)
           .setOperands(operands)

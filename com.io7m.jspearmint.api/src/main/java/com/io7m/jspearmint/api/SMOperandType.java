@@ -14,42 +14,37 @@
  * IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package com.io7m.jspearmint.parser.api;
+package com.io7m.jspearmint.api;
 
 import com.io7m.immutables.styles.ImmutablesStyleType;
 import org.immutables.value.Value;
 
-import java.util.List;
-
 /**
- * A parsed instruction.
+ * The specification of an instruction operand.
  */
 
 @ImmutablesStyleType
 @Value.Immutable
-public interface SMParsedInstructionType
+public interface SMOperandType
 {
   /**
-   * @return The number of words used by this instruction
+   * @return The operand kind
    */
 
-  long wordCount();
+  @Value.Parameter
+  SMOperandKind kind();
 
   /**
-   * @return The opcode of this instruction
+   * @return The operand quantifier
    */
 
-  long opCode();
+  @Value.Parameter
+  SMOperandQuantifier quantifier();
 
   /**
-   * @return The operands of this instruction
+   * @return The operand name
    */
 
-  List<Long> operands();
-
-  /**
-   * @return The byte offset of the instruction
-   */
-
-  long byteOffset();
+  @Value.Parameter
+  String name();
 }

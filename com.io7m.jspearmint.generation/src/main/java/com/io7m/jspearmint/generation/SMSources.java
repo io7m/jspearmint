@@ -14,42 +14,34 @@
  * IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package com.io7m.jspearmint.parser.api;
+package com.io7m.jspearmint.generation;
 
-import com.io7m.immutables.styles.ImmutablesStyleType;
-import org.immutables.value.Value;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.io7m.jspearmint.json_registry.SMJSONRegistry;
 
-import java.util.List;
+import java.io.IOException;
+import java.io.InputStream;
 
-/**
- * A parsed instruction.
- */
-
-@ImmutablesStyleType
-@Value.Immutable
-public interface SMParsedInstructionType
+public final class SMSources
 {
-  /**
-   * @return The number of words used by this instruction
-   */
+  private SMSources()
+  {
 
-  long wordCount();
+  }
 
-  /**
-   * @return The opcode of this instruction
-   */
+  public static InputStream sources()
+  {
+    return SMGenerateInstructionEnumMain.class.getResourceAsStream(
+      "/com/io7m/jspearmint/generation/spirv_headers/include/spirv/unified1/spirv.core.grammar.json"
+    );
+  }
 
-  long opCode();
-
-  /**
-   * @return The operands of this instruction
-   */
-
-  List<Long> operands();
-
-  /**
-   * @return The byte offset of the instruction
-   */
-
-  long byteOffset();
+  public static SMJSONRegistry registry()
+    throws IOException
+  {
+    try (var stream = sources()) {
+      final var mapper = new ObjectMapper();
+      return mapper.readValue(stream, SMJSONRegistry.class);
+    }
+  }
 }
