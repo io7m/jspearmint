@@ -76,11 +76,12 @@ public abstract class SMParserContract
     try (var stream = this.resource("trivialBig.sv")) {
       try (var parser = this.parsers()
         .create(URI.create("urn:unknown"), stream)) {
-        Assertions.assertEquals(0L, parser.generatorMagicNumber());
-        Assertions.assertEquals(0L, parser.idBound());
-        Assertions.assertEquals(1L, parser.versionMajor());
-        Assertions.assertEquals(3L, parser.versionMinor());
-        Assertions.assertNotEquals(0L, parser.rawVersionNumber());
+        final var header = parser.header();
+        Assertions.assertEquals(0L, header.generatorMagicNumber());
+        Assertions.assertEquals(0L, header.idBound());
+        Assertions.assertEquals(1L, header.versionMajor());
+        Assertions.assertEquals(3L, header.versionMinor());
+        Assertions.assertNotEquals(0L, header.rawVersionNumber());
       }
     }
   }
@@ -98,11 +99,12 @@ public abstract class SMParserContract
     try (var stream = this.resource("trivialLittle.sv")) {
       try (var parser = this.parsers()
         .create(URI.create("urn:unknown"), stream)) {
-        Assertions.assertEquals(0L, parser.generatorMagicNumber());
-        Assertions.assertEquals(0L, parser.idBound());
-        Assertions.assertEquals(1L, parser.versionMajor());
-        Assertions.assertEquals(3L, parser.versionMinor());
-        Assertions.assertNotEquals(0L, parser.rawVersionNumber());
+        final var header = parser.header();
+        Assertions.assertEquals(0L, header.generatorMagicNumber());
+        Assertions.assertEquals(0L, header.idBound());
+        Assertions.assertEquals(1L, header.versionMajor());
+        Assertions.assertEquals(3L, header.versionMinor());
+        Assertions.assertNotEquals(0L, header.rawVersionNumber());
       }
     }
   }
@@ -139,11 +141,12 @@ public abstract class SMParserContract
     try (var stream = this.resource("clip_space_triangle.vert.spv")) {
       try (var parser = this.parsers()
         .create(URI.create("urn:unknown"), stream)) {
-        Assertions.assertEquals(0x80007L, parser.generatorMagicNumber());
-        Assertions.assertEquals(33L, parser.idBound());
-        Assertions.assertEquals(1L, parser.versionMajor());
-        Assertions.assertEquals(0L, parser.versionMinor());
-        Assertions.assertNotEquals(0L, parser.rawVersionNumber());
+        final var header = parser.header();
+        Assertions.assertEquals(0x80007L, header.generatorMagicNumber());
+        Assertions.assertEquals(33L, header.idBound());
+        Assertions.assertEquals(1L, header.versionMajor());
+        Assertions.assertEquals(0L, header.versionMinor());
+        Assertions.assertNotEquals(0L, header.rawVersionNumber());
 
         final var instructions = parser.parseAllInstructions();
         Assertions.assertEquals(57, instructions.size());
@@ -166,11 +169,12 @@ public abstract class SMParserContract
     try (var stream = this.resource("clip_space_triangle.vert_big.spv")) {
       try (var parser = this.parsers()
         .create(URI.create("urn:unknown"), stream)) {
-        Assertions.assertEquals(0x80007L, parser.generatorMagicNumber());
-        Assertions.assertEquals(33L, parser.idBound());
-        Assertions.assertEquals(1L, parser.versionMajor());
-        Assertions.assertEquals(0L, parser.versionMinor());
-        Assertions.assertNotEquals(0L, parser.rawVersionNumber());
+        final var header = parser.header();
+        Assertions.assertEquals(0x80007L, header.generatorMagicNumber());
+        Assertions.assertEquals(33L, header.idBound());
+        Assertions.assertEquals(1L, header.versionMajor());
+        Assertions.assertEquals(0L, header.versionMinor());
+        Assertions.assertNotEquals(0L, header.rawVersionNumber());
 
         final var instructions = parser.parseAllInstructions();
         Assertions.assertEquals(57, instructions.size());

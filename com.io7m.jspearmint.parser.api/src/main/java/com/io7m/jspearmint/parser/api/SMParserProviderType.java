@@ -19,10 +19,26 @@ package com.io7m.jspearmint.parser.api;
 import java.io.InputStream;
 import java.net.URI;
 
+/**
+ * A provider of parsers.
+ */
+
 public interface SMParserProviderType
 {
+  /**
+   * Create a new parser.
+   *
+   * @param uri    The URI of the source document
+   * @param stream The stream of the source document
+   *
+   * @return A new parser
+   *
+   * @throws SMParseException On errors
+   */
+
   SMParserType create(
     URI uri,
     InputStream stream
-  ) throws SMParseException;
+  )
+    throws SMParseException;
 }

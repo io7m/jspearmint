@@ -16,6 +16,7 @@
 
 package com.io7m.jspearmint.tests;
 
+import com.io7m.jspearmint.analysis.SMString;
 import com.io7m.jspearmint.api.SMAccessQualifier;
 import com.io7m.jspearmint.api.SMAddressingModel;
 import com.io7m.jspearmint.api.SMBuiltIn;
@@ -61,6 +62,7 @@ import org.junit.jupiter.api.TestFactory;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -128,6 +130,14 @@ public final class SMEqualityTest
       () -> checkEnumValueEquality(clazz));
   }
 
+  private static DynamicTest testEnumOfIntegerMake(
+    final Class<?> clazz)
+  {
+    return DynamicTest.dynamicTest(
+      String.format("testEnumOfInteger%s", clazz.getSimpleName()),
+      () -> checkEnumOfInteger(clazz));
+  }
+
   private static void checkEnumEquality(
     final Class<?> clazz)
   {
@@ -143,6 +153,8 @@ public final class SMEqualityTest
         clazz.getMethod("values");
       final var valueMethod =
         clazz.getMethod("value");
+      final var spirNameMethod =
+        clazz.getMethod("spirName");
       final Object[] values =
         (Object[]) valuesMethod.invoke(clazz);
 
@@ -170,7 +182,59 @@ public final class SMEqualityTest
               valueOther
             )
           );
+
+          final Object nameThis = spirNameMethod.invoke(value);
+          final Object nameOther = spirNameMethod.invoke(other);
+
+          Assertions.assertNotEquals(
+            nameThis,
+            nameOther,
+            String.format(
+              "%s (%s) != %s (%s)",
+              value,
+              nameThis,
+              other,
+              nameOther
+            )
+          );
         }
+      }
+    } catch (final NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+      throw new IllegalStateException(e);
+    }
+  }
+
+  private static void checkEnumOfInteger(
+    final Class<?> clazz)
+  {
+    try {
+      final var valuesMethod =
+        clazz.getMethod("values");
+      final var valueMethod =
+        clazz.getMethod("value");
+      final var ofIntegerMethod =
+        clazz.getMethod("ofInteger", int.class);
+      final Object[] values =
+        (Object[]) valuesMethod.invoke(clazz);
+
+      for (final var value : values) {
+        final var i = (Integer) valueMethod.invoke(value);
+        final var other = ofIntegerMethod.invoke(clazz, i);
+
+        if (!Objects.equals(value, other)) {
+          if (isExceptionPair(value.toString(), other.toString())) {
+            continue;
+          }
+        }
+        Assertions.assertEquals(value, other);
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+          try {
+            ofIntegerMethod.invoke(clazz, Integer.valueOf(Integer.MAX_VALUE));
+          } catch (final InvocationTargetException e) {
+            throw e.getCause();
+          }
+        });
       }
     } catch (final NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
       throw new IllegalStateException(e);
@@ -235,6 +299,14 @@ public final class SMEqualityTest
       .verify();
   }
 
+  @Test
+  public void testSMString()
+  {
+    EqualsVerifier.forClass(SMString.class)
+      .withNonnullFields("text")
+      .verify();
+  }
+
   @TestFactory
   public Stream<DynamicTest> testEnums()
   {
@@ -245,6 +317,15 @@ public final class SMEqualityTest
   public Stream<DynamicTest> testEnumsValue()
   {
     return ENUM_CLASSES.stream().map(SMEqualityTest::testEnumValueMake);
+  }
+
+  @TestFactory
+  public Stream<DynamicTest> testEnumsOfInteger()
+  {
+    return ENUM_CLASSES.stream()
+      .filter(c -> !"SMInstruction".equals(c.getSimpleName()))
+      .filter(c -> !"SMOperandKind".equals(c.getSimpleName()))
+      .map(SMEqualityTest::testEnumOfIntegerMake);
   }
 
   @TestFactory

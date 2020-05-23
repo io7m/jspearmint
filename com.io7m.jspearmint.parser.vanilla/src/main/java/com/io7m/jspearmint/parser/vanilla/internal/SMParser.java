@@ -18,6 +18,7 @@ package com.io7m.jspearmint.parser.vanilla.internal;
 
 import com.io7m.jbssio.api.BSSReaderSequentialType;
 import com.io7m.jspearmint.parser.api.SMParseException;
+import com.io7m.jspearmint.parser.api.SMParsedHeader;
 import com.io7m.jspearmint.parser.api.SMParsedInstruction;
 import com.io7m.jspearmint.parser.api.SMParserType;
 import org.slf4j.Logger;
@@ -53,34 +54,19 @@ public final class SMParser implements SMParserType
 
   private final BSSReaderSequentialType reader;
   private final boolean bigEndian;
-  private final long version;
-  private final long generatorMagic;
-  private final long bound;
-  private final long reserved;
-  private final long versionMajor;
-  private final long versionMinor;
+  private final SMParsedHeader header;
 
   private SMParser(
     final BSSReaderSequentialType inReader,
     final boolean inBigEndian,
-    final long inVersion,
-    final long inGeneratorMagic,
-    final long inBound,
-    final long inReserved,
-    final long inVersionMajor,
-    final long inVersionMinor)
+    final SMParsedHeader inHeader)
   {
     this.reader = Objects.requireNonNull(inReader, "reader");
     this.bigEndian = inBigEndian;
-    this.version = inVersion;
-    this.generatorMagic = inGeneratorMagic;
-    this.bound = inBound;
-    this.reserved = inReserved;
-    this.versionMajor = inVersionMajor;
-    this.versionMinor = inVersionMinor;
+    this.header = Objects.requireNonNull(inHeader, "inHeader");
   }
 
-  public static SMParserType create(
+  public static SMParser create(
     final BSSReaderSequentialType reader)
     throws IOException, SMParseException
   {
@@ -96,20 +82,18 @@ public final class SMParser implements SMParserType
     final var reserved =
       readWord(reader, "reserved", bigEndian);
 
-    final long versionMajor =
-      ((rawVersion & 0x00ff0000L) >> 16) & 0xffL;
-    final long versionMinor =
-      ((rawVersion & 0x0000ff00L) >> 8) & 0xffL;
+    final var header =
+      SMParsedHeader.builder()
+        .setGeneratorMagicNumber(generatorMagic)
+        .setIdBound(bound)
+        .setRawVersionNumber(rawVersion)
+        .setSchema(reserved)
+        .build();
 
     return new SMParser(
       reader,
       bigEndian,
-      rawVersion,
-      generatorMagic,
-      bound,
-      reserved,
-      versionMajor,
-      versionMinor
+      header
     );
   }
 
@@ -166,33 +150,9 @@ public final class SMParser implements SMParserType
   }
 
   @Override
-  public long rawVersionNumber()
+  public SMParsedHeader header()
   {
-    return this.version;
-  }
-
-  @Override
-  public long versionMajor()
-  {
-    return this.versionMajor;
-  }
-
-  @Override
-  public long versionMinor()
-  {
-    return this.versionMinor;
-  }
-
-  @Override
-  public long generatorMagicNumber()
-  {
-    return this.generatorMagic;
-  }
-
-  @Override
-  public long idBound()
-  {
-    return this.bound;
+    return this.header;
   }
 
   @Override

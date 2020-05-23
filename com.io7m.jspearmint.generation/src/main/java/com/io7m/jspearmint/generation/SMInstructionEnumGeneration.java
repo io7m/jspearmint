@@ -60,10 +60,11 @@ public final class SMInstructionEnumGeneration
       typeBuilder.addEnumConstant(
         transformEnumConstantName(instruction.name),
         TypeSpec.anonymousClassBuilder(
-          "$L,$S,$L",
+          "$L,$S,$L,$L",
           instruction.opcode,
           instruction.name,
-          instructionOperandList(packageName, instruction.operands)
+          instructionOperandList(packageName, instruction.operands),
+          Integer.valueOf(instructionMinimumOperands(instruction.operands))
         ).addJavadoc(instruction.name)
           .build()
       );
@@ -73,6 +74,20 @@ public final class SMInstructionEnumGeneration
     typeBuilder.addMethods(generateMethods(packageName));
     typeBuilder.addMethod(generateEnumConstructor(packageName));
     return typeBuilder.build();
+  }
+
+  private static int instructionMinimumOperands(
+    final List<SMJSONInstructionOperand> operands)
+  {
+    int required = 0;
+    for (int index = 0; index < operands.size(); ++index) {
+      final var operand = operands.get(index);
+      if (!operand.quantifier.trim().isEmpty()) {
+        break;
+      }
+      ++required;
+    }
+    return required;
   }
 
   private static Iterable<MethodSpec> generateMethods(
@@ -94,6 +109,11 @@ public final class SMInstructionEnumGeneration
         .addModifiers(PUBLIC)
         .returns(INT)
         .addCode("return this.value;")
+        .build(),
+      MethodSpec.methodBuilder("minimumOperandCount")
+        .addModifiers(PUBLIC)
+        .returns(INT)
+        .addCode("return this.minimumOperandCount;")
         .build()
     );
   }
@@ -180,6 +200,8 @@ public final class SMInstructionEnumGeneration
       FieldSpec.builder(String.class, "spirName", FINAL, PRIVATE)
         .build(),
       FieldSpec.builder(listParameterized, "operands", FINAL, PRIVATE)
+        .build(),
+      FieldSpec.builder(INT, "minimumOperandCount", FINAL, PRIVATE)
         .build()
     );
   }
@@ -194,11 +216,13 @@ public final class SMInstructionEnumGeneration
       .addParameter(INT, "inValue", FINAL)
       .addParameter(String.class, "inSpirName", FINAL)
       .addParameter(listParameterized, "inOperands", FINAL)
+      .addParameter(INT, "inMinimumOperandCount", FINAL)
       .addCode(
         CodeBlock.builder()
           .addStatement("this.value = inValue")
           .addStatement("this.spirName = inSpirName")
           .addStatement("this.operands = inOperands")
+          .addStatement("this.minimumOperandCount = inMinimumOperandCount")
           .build()
       ).build();
   }

@@ -59,18 +59,24 @@ public final class SMOperandKindEnumGeneration
       typeBuilder.addEnumConstant(
         transformEnumConstantName(operandKind.kind),
         TypeSpec.anonymousClassBuilder(
-          "$L",
-          Integer.valueOf(index)
-        ).addJavadoc(String.format("%s: %s", operandKind.kind,
-                                   docOrNothing(operandKind)))
+          "$L,$S",
+          Integer.valueOf(index),
+          operandKind.kind
+        ).addJavadoc(operandJavaDoc(operandKind))
           .build()
       );
     }
 
-    typeBuilder.addField(generateValueField());
+    typeBuilder.addFields(generateValueFields());
     typeBuilder.addMethod(generateEnumConstructor());
-    typeBuilder.addMethod(generateValueMethod());
+    typeBuilder.addMethods(generateValueMethods());
     return typeBuilder.build();
+  }
+
+  private static String operandJavaDoc(
+    final SMJSONOperandKind operandKind)
+  {
+    return String.format("%s: %s", operandKind.kind, docOrNothing(operandKind));
   }
 
   private static String docOrNothing(
@@ -82,29 +88,43 @@ public final class SMOperandKindEnumGeneration
     return operandKind.doc;
   }
 
-  private static FieldSpec generateValueField()
+  private static List<FieldSpec> generateValueFields()
   {
-    return FieldSpec.builder(INT, "value", FINAL, PRIVATE)
-      .build();
+    return List.of(
+      FieldSpec.builder(INT, "value", FINAL, PRIVATE)
+        .build(),
+      FieldSpec.builder(String.class, "spirName", FINAL, PRIVATE)
+        .build()
+    );
   }
 
-  private static MethodSpec generateValueMethod()
+  private static List<MethodSpec> generateValueMethods()
   {
-    return MethodSpec.methodBuilder("value")
-      .addAnnotation(Override.class)
-      .addModifiers(PUBLIC)
-      .returns(INT)
-      .addCode("return this.value;")
-      .build();
+    return List.of(
+      MethodSpec.methodBuilder("value")
+        .addAnnotation(Override.class)
+        .addModifiers(PUBLIC)
+        .returns(INT)
+        .addCode("return this.value;")
+        .build(),
+
+      MethodSpec.methodBuilder("spirName")
+        .addModifiers(PUBLIC)
+        .returns(String.class)
+        .addCode("return this.spirName;")
+        .build()
+    );
   }
 
   private static MethodSpec generateEnumConstructor()
   {
     return MethodSpec.constructorBuilder()
-      .addParameter(INT, "value", FINAL)
+      .addParameter(INT, "inValue", FINAL)
+      .addParameter(String.class, "inSpirName", FINAL)
       .addCode(
         CodeBlock.builder()
-          .add("this.value = value;")
+          .add("this.value = inValue;")
+          .add("this.spirName = inSpirName;")
           .build()
       ).build();
   }

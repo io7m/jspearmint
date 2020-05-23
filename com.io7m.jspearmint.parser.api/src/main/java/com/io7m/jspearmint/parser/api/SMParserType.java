@@ -20,20 +20,36 @@ import java.io.Closeable;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * A parser.
+ */
+
 public interface SMParserType extends Closeable
 {
-  long rawVersionNumber();
+  /**
+   * @return The parsed header
+   */
 
-  long versionMajor();
+  SMParsedHeader header();
 
-  long versionMinor();
-
-  long generatorMagicNumber();
-
-  long idBound();
+  /**
+   * Parse an instruction, returning nothing on EOF.
+   *
+   * @return A parsed instruction
+   *
+   * @throws SMParseException On errors
+   */
 
   Optional<SMParsedInstruction> parseNextInstruction()
     throws SMParseException;
+
+  /**
+   * Parse all remaining instructions.
+   *
+   * @return The list of parsed instructions
+   *
+   * @throws SMParseException On errors
+   */
 
   List<SMParsedInstruction> parseAllInstructions()
     throws SMParseException;

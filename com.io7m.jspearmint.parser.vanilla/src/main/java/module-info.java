@@ -24,12 +24,14 @@ module com.io7m.jspearmint.parser.vanilla
   requires static org.osgi.annotation.versioning;
   requires static org.osgi.service.component.annotations;
 
+  requires org.slf4j;
   requires transitive com.io7m.jbssio.api;
   requires transitive com.io7m.jspearmint.parser.api;
 
-  uses com.io7m.jbssio.api.BSSReaderProviderType;
+  provides com.io7m.jspearmint.parser.api.SMParserProviderType
+    with com.io7m.jspearmint.parser.vanilla.SMParsers;
 
-  requires org.slf4j;
+  uses com.io7m.jbssio.api.BSSReaderProviderType;
 
   exports com.io7m.jspearmint.parser.vanilla;
 }

@@ -23,6 +23,7 @@ import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
 
+import java.util.List;
 import java.util.Objects;
 
 import static com.io7m.jspearmint.generation.SMInstructionEnumGeneration.transformEnumConstantName;
@@ -30,6 +31,7 @@ import static com.squareup.javapoet.TypeName.INT;
 import static javax.lang.model.element.Modifier.FINAL;
 import static javax.lang.model.element.Modifier.PRIVATE;
 import static javax.lang.model.element.Modifier.PUBLIC;
+import static javax.lang.model.element.Modifier.STATIC;
 
 public final class SMEnumGeneration
 {
@@ -46,6 +48,8 @@ public final class SMEnumGeneration
 
     final var className =
       String.format("SM%s", kind.kind);
+    final var qualifiedName =
+      ClassName.get(packageName, className);
 
     final TypeSpec.Builder typeBuilder =
       TypeSpec.enumBuilder(className)
@@ -76,32 +80,59 @@ public final class SMEnumGeneration
       typeBuilder.addEnumConstant(
         transformEnumConstantName(enumConstant.enumerant),
         TypeSpec.anonymousClassBuilder(
-          "$L",
-          enumConstant.value
+          "$L,$S",
+          enumConstant.value,
+          enumConstant.enumerant
         ).addJavadoc(enumConstant.enumerant)
           .build()
       );
     }
-    typeBuilder.addField(generateValueField());
+
+    typeBuilder.addFields(generateValueFields());
     typeBuilder.addMethod(generateEnumConstructor());
-    typeBuilder.addMethod(generateValueMethod());
+    typeBuilder.addMethods(generateValueMethods(qualifiedName));
     return typeBuilder.build();
   }
 
-  private static FieldSpec generateValueField()
+  private static List<FieldSpec> generateValueFields()
   {
-    return FieldSpec.builder(INT, "value", FINAL, PRIVATE)
-      .build();
+    return List.of(
+      FieldSpec.builder(INT, "value", FINAL, PRIVATE).build(),
+      FieldSpec.builder(String.class, "spirName", FINAL, PRIVATE).build()
+    );
   }
 
-  private static MethodSpec generateValueMethod()
+  private static List<MethodSpec> generateValueMethods(
+    final ClassName thisType)
   {
-    return MethodSpec.methodBuilder("value")
-      .addAnnotation(Override.class)
-      .addModifiers(PUBLIC)
-      .returns(INT)
-      .addCode("return this.value;")
-      .build();
+    return List.of(
+      MethodSpec.methodBuilder("value")
+        .addAnnotation(Override.class)
+        .addModifiers(PUBLIC)
+        .returns(INT)
+        .addCode("return this.value;")
+        .build(),
+
+      MethodSpec.methodBuilder("spirName")
+        .addModifiers(PUBLIC)
+        .returns(String.class)
+        .addCode("return this.spirName;")
+        .build(),
+
+      MethodSpec.methodBuilder("ofInteger")
+        .addModifiers(PUBLIC, STATIC)
+        .addParameter(INT, "x", FINAL)
+        .returns(thisType)
+        .beginControlFlow("for (var v : $L.values())\n", thisType)
+        .beginControlFlow("if (v.value() == x)")
+        .addCode("return v;")
+        .endControlFlow()
+        .endControlFlow()
+        .addCode(
+          "throw new IllegalArgumentException($S + x);\n",
+          String.format("Unrecognized %s value: ", thisType.simpleName()))
+        .build()
+    );
   }
 
   private static String generateClassJavadoc(
@@ -124,10 +155,12 @@ public final class SMEnumGeneration
   private static MethodSpec generateEnumConstructor()
   {
     return MethodSpec.constructorBuilder()
-      .addParameter(INT, "value", FINAL)
+      .addParameter(INT, "inValue", FINAL)
+      .addParameter(String.class, "inSpirName", FINAL)
       .addCode(
         CodeBlock.builder()
-          .add("this.value = value;")
+          .add("this.value = inValue;")
+          .add("this.spirName = inSpirName;")
           .build()
       ).build();
   }

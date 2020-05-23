@@ -26,16 +26,20 @@
     <module>com.io7m.jspearmint.parser.vanilla</module>
     <module>com.io7m.jspearmint.generation</module>
     <module>com.io7m.jspearmint.api</module>
+    <module>com.io7m.jspearmint.cmdline</module>
+    <module>com.io7m.jspearmint.disassembly.api</module>
+    <module>com.io7m.jspearmint.disassembly.vanilla</module>
+    <module>com.io7m.jspearmint.analysis</module>
   </modules>
 
   <properties>
     <com.codacy.id>ec405841decf4a589335aada10acb94d</com.codacy.id>
+    <com.io7m.jbssio.version>0.0.3</com.io7m.jbssio.version>
     <com.io7m.xstructural.version>0.0.1</com.io7m.xstructural.version>
-    <io7m.org.immutables.version>2.8.3</io7m.org.immutables.version>
     <io7m.api.previousVersion>0.0.1-SNAPSHOT</io7m.api.previousVersion>
-    <junit.version>5.7.0-M1</junit.version>
+    <io7m.org.immutables.version>2.8.3</io7m.org.immutables.version>
     <jackson.version>2.10.2</jackson.version>
-    <com.io7m.jbssio.version>0.0.2</com.io7m.jbssio.version>
+    <junit.version>5.7.0-M1</junit.version>
   </properties>
 
   <licenses>
@@ -110,6 +114,11 @@
         <version>0.0.1</version>
       </dependency>
       <dependency>
+        <groupId>com.io7m.jaffirm</groupId>
+        <artifactId>com.io7m.jaffirm.core</artifactId>
+        <version>3.0.4</version>
+      </dependency>
+      <dependency>
         <groupId>com.io7m.jbssio</groupId>
         <artifactId>com.io7m.jbssio.vanilla</artifactId>
         <version>${com.io7m.jbssio.version}</version>
@@ -133,6 +142,11 @@
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
         <version>2.6</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-text</artifactId>
+        <version>1.8</version>
       </dependency>
       <dependency>
         <groupId>org.junit.jupiter</groupId>
@@ -178,6 +192,11 @@
         <groupId>com.squareup</groupId>
         <artifactId>javapoet</artifactId>
         <version>1.12.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>3.3.3</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

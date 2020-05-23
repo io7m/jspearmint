@@ -1,0 +1,63 @@
+; SPIR-V
+; Version 1.0
+; Generator: 0x80007
+; Bound: 33
+; Schema: 0
+
+0x00000014 |              OpCapability Shader
+0x0000001c |         %1 = OpExtInstImport "GLSL.std.450"
+0x00000034 |              OpMemoryModel Logical GLSL450
+0x00000040 |              OpEntryPoint Vertex %R3_clip_triangle_vert_main "R3_clip_triangle_vert_main" %_ %attrPosition %fragmentColor %attrColor %fragmentUV %attrUV
+0x00000080 |              OpSource GLSL $450
+0x0000008c |              OpName %R3_clip_triangle_vert_main "R3_clip_triangle_vert_main"
+0x000000b0 |              OpName %gl_PerVertex "gl_PerVertex"
+0x000000c8 |              OpMemberName %gl_PerVertex $0 "gl_Position"
+0x000000e0 |              OpName %_ ""
+0x000000ec |              OpName %attrPosition "attrPosition"
+0x00000104 |              OpName %fragmentColor "fragmentColor"
+0x0000011c |              OpName %attrColor "attrColor"
+0x00000130 |              OpName %fragmentUV "fragmentUV"
+0x00000144 |              OpName %attrUV "attrUV"
+0x00000154 |              OpMemberDecorate %gl_PerVertex $0 BuiltIn $0
+0x00000168 |              OpDecorate %gl_PerVertex Block
+0x00000174 |              OpDecorate %attrPosition Location $0
+0x00000184 |              OpDecorate %fragmentColor Location $0
+0x00000194 |              OpDecorate %attrColor Location $1
+0x000001a4 |              OpDecorate %fragmentUV Location $1
+0x000001b4 |              OpDecorate %attrUV Location $2
+0x000001c4 |         %2 = OpTypeVoid
+0x000001cc |         %3 = OpTypeFunction %2
+0x000001d8 |         %6 = OpTypeFloat $32
+0x000001e4 |         %7 = OpTypeVector %6 $4
+0x000001f4 |         %8 = OpTypeStruct %7
+0x00000200 |         %9 = OpTypePointer Output %gl_PerVertex
+0x00000210 |        %10 = OpVariable %9 Output
+0x00000220 |        %11 = OpTypeInt $32 $1
+0x00000230 |        %12 = OpConstant %11 $0
+0x00000240 |        %13 = OpTypeVector %6 $2
+0x00000250 |        %14 = OpTypePointer Input %13
+0x00000260 |        %15 = OpVariable %14 Input
+0x00000270 |        %17 = OpConstant %6 $0.0
+0x00000280 |        %18 = OpConstant %6 $1.0
+0x00000290 |        %22 = OpTypePointer Output %7
+0x000002a0 |        %24 = OpTypeVector %6 $3
+0x000002b0 |        %25 = OpTypePointer Output %24
+0x000002c0 |        %26 = OpVariable %25 Output
+0x000002d0 |        %27 = OpTypePointer Input %24
+0x000002e0 |        %28 = OpVariable %27 Input
+0x000002f0 |        %30 = OpVariable %25 Output
+0x00000300 |        %31 = OpVariable %27 Input
+0x00000310 |         %4 = OpFunction %2 None %3
+0x00000324 |         %5 = OpLabel
+0x0000032c |        %16 = OpLoad %13 %attrPosition
+0x0000033c |        %19 = OpCompositeExtract %6 %16 $0
+0x00000350 |        %20 = OpCompositeExtract %6 %16 $1
+0x00000364 |        %21 = OpCompositeConstruct %7 %19 %20 %17 %18
+0x00000380 |        %23 = OpAccessChain %22 %_ %12
+0x00000394 |              OpStore %23 %21 None
+0x000003a0 |        %29 = OpLoad %24 %attrColor
+0x000003b0 |              OpStore %fragmentColor %29 None
+0x000003bc |        %32 = OpLoad %24 %attrUV
+0x000003cc |              OpStore %fragmentUV %32 None
+0x000003d8 |              OpReturn
+0x000003dc |              OpFunctionEnd
