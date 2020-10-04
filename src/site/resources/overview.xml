@@ -8,10 +8,6 @@
          <img src="https://img.shields.io/maven-central/v/com.io7m.jspearmint/com.io7m.jspearmint.png?style=flat-square"
               alt="Maven Central"/>
       </a>
-      <a href="https://www.codacy.com/app/github_79/jspearmint">
-         <img src="https://img.shields.io/codacy/grade/ec405841decf4a589335aada10acb94d.png?style=flat-square"
-              alt="Codacy"/>
-      </a>
       <a href="https://codecov.io/gh/io7m/jspearmint">
          <img src="https://img.shields.io/codecov/c/github/io7m/jspearmint.png?style=flat-square"
               alt="Codecov"/>
