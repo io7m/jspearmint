@@ -36,10 +36,6 @@ public final class SMCommandVersion extends CLPAbstractCommand
   public Status executeActual()
     throws Exception
   {
-    if (super.execute() == Status.FAILURE) {
-      return Status.FAILURE;
-    }
-
     try (var stream = versionStream()) {
       final var properties = new Properties();
       properties.load(stream);

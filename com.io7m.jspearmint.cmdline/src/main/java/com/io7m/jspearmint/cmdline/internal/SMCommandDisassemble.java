@@ -51,10 +51,6 @@ public final class SMCommandDisassemble extends CLPAbstractCommand
   public Status executeActual()
     throws Exception
   {
-    if (super.execute() == Status.FAILURE) {
-      return Status.FAILURE;
-    }
-
     final var parsers =
       SMServices.findParsers();
     final var disassemblers =
