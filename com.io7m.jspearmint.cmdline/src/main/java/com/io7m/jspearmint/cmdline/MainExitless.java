@@ -46,8 +46,21 @@ public final class MainExitless
     final Main cm = new Main(args);
     cm.run();
 
-    if (cm.exitCode() != 0) {
-      throw new IOException("Returned exit code " + cm.exitCode());
+    final int exitCode = cm.exitCode();
+    if (exitCode != 0) {
+      throw new IOException(
+        String.format("Returned exit code %d", Integer.valueOf(exitCode)),
+        cm.exitCause().orElse(null)
+      );
     }
+  }
+
+  @Override
+  public String toString()
+  {
+    return String.format(
+      "[MainExitless 0x%s]",
+      Long.toUnsignedString(System.identityHashCode(this), 16)
+    );
   }
 }

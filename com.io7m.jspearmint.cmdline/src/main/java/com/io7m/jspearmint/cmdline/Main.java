@@ -16,19 +16,22 @@
 
 package com.io7m.jspearmint.cmdline;
 
-import com.beust.jcommander.JCommander;
-import com.beust.jcommander.ParameterException;
-import com.beust.jcommander.internal.Console;
+import com.io7m.claypot.core.CLPApplicationConfiguration;
+import com.io7m.claypot.core.CLPCommandConstructorType;
+import com.io7m.claypot.core.CLPCommandType;
+import com.io7m.claypot.core.Claypot;
+import com.io7m.claypot.core.ClaypotType;
 import com.io7m.jspearmint.cmdline.internal.SMCommandDisassemble;
-import com.io7m.jspearmint.cmdline.internal.SMCommandRoot;
-import com.io7m.jspearmint.cmdline.internal.SMCommandType;
 import com.io7m.jspearmint.cmdline.internal.SMCommandVersion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.net.URI;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.SortedMap;
+import java.util.stream.Stream;
 
 /**
  * Main command line entry point.
@@ -38,10 +41,8 @@ public final class Main implements Runnable
 {
   private static final Logger LOG = LoggerFactory.getLogger(Main.class);
 
-  private final Map<String, SMCommandType> commands;
-  private final JCommander commander;
   private final String[] args;
-  private int exitCode;
+  private final ClaypotType claypot;
 
   public Main(
     final String[] inArgs)
@@ -49,20 +50,22 @@ public final class Main implements Runnable
     this.args =
       Objects.requireNonNull(inArgs, "Command line arguments");
 
-    final SMCommandRoot r = new SMCommandRoot();
-    final SMCommandVersion version =
-      new SMCommandVersion();
-    final SMCommandDisassemble disassemble =
-      new SMCommandDisassemble();
+    final List<CLPCommandConstructorType> commands =
+      List.of(
+        SMCommandDisassemble::new,
+        SMCommandVersion::new
+      );
 
-    this.commands = new HashMap<>(8);
-    this.commands.put("version", version);
-    this.commands.put("disassemble", disassemble);
+    final var configuration =
+      CLPApplicationConfiguration.builder()
+        .setLogger(LOG)
+        .setProgramName("jspearmint")
+        .setCommands(commands)
+        .setDocumentationURI(URI.create(
+          "https://www.io7m.com/software/jspearmint/documentation/"))
+        .build();
 
-    this.commander = new JCommander(r);
-    this.commander.setProgramName("brooklime");
-    this.commander.addCommand("version", version);
-    this.commander.addCommand("disassemble", disassemble);
+    this.claypot = Claypot.create(configuration);
   }
 
   /**
@@ -84,63 +87,50 @@ public final class Main implements Runnable
 
   public int exitCode()
   {
-    return this.exitCode;
+    return this.claypot.exitCode();
   }
 
   @Override
   public void run()
   {
-    try {
-      this.commander.parse(this.args);
-
-      final String cmd = this.commander.getParsedCommand();
-      if (cmd == null) {
-        final StringBuilderConsole console = new StringBuilderConsole();
-        this.commander.setConsole(console);
-        this.commander.usage();
-        LOG.info("Arguments required.\n{}", console.builder.toString());
-        this.exitCode = 1;
-        return;
-      }
-
-      final SMCommandType command = this.commands.get(cmd);
-      final SMCommandType.Status status = command.execute();
-      this.exitCode = status.exitCode();
-    } catch (final ParameterException e) {
-      LOG.error("{}", e.getMessage());
-      this.exitCode = 1;
-    } catch (final Exception e) {
-      LOG.error("{}", e.getMessage(), e);
-      this.exitCode = 1;
-    }
+    this.claypot.execute(this.args);
   }
 
-  private static final class StringBuilderConsole implements Console
+  /**
+   * @return The names of the available commands
+   */
+
+  public Stream<String> commandNames()
   {
-    private final StringBuilder builder;
+    return this.commands()
+      .keySet()
+      .stream();
+  }
 
-    StringBuilderConsole()
-    {
-      this.builder = new StringBuilder(128);
-    }
+  /**
+   * @return The available commands
+   */
 
-    @Override
-    public void print(final String s)
-    {
-      this.builder.append(s);
-    }
+  public SortedMap<String, CLPCommandType> commands()
+  {
+    return this.claypot.commands();
+  }
 
-    @Override
-    public void println(final String s)
-    {
-      this.builder.append(s);
-      this.builder.append('\n');
-    }
+  @Override
+  public String toString()
+  {
+    return String.format(
+      "[Main 0x%s]",
+      Long.toUnsignedString(System.identityHashCode(this), 16)
+    );
+  }
 
-    @Override
-    public char[] readPassword(final boolean b)
-    {
-      return new char[0];
-    }
+  /**
+   * @return The exception that caused the exit
+   */
+
+  public Optional<Exception> exitCause()
+  {
+    return this.claypot.exitCause();
   }
 }

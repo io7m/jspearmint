@@ -17,20 +17,23 @@
 package com.io7m.jspearmint.cmdline.internal;
 
 import com.beust.jcommander.Parameters;
+import com.io7m.claypot.core.CLPAbstractCommand;
+import com.io7m.claypot.core.CLPCommandContextType;
 
 import java.io.InputStream;
 import java.util.Properties;
 
 @Parameters(commandDescription = "Show the application version")
-public final class SMCommandVersion extends SMCommandRoot
+public final class SMCommandVersion extends CLPAbstractCommand
 {
-  public SMCommandVersion()
+  public SMCommandVersion(
+    final CLPCommandContextType context)
   {
-
+    super(context);
   }
 
   @Override
-  public Status execute()
+  public Status executeActual()
     throws Exception
   {
     if (super.execute() == Status.FAILURE) {
@@ -50,5 +53,11 @@ public final class SMCommandVersion extends SMCommandRoot
     return SMCommandVersion.class.getResourceAsStream(
       "version.properties"
     );
+  }
+
+  @Override
+  public String name()
+  {
+    return "version";
   }
 }

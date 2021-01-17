@@ -18,13 +18,15 @@ package com.io7m.jspearmint.cmdline.internal;
 
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
+import com.io7m.claypot.core.CLPAbstractCommand;
+import com.io7m.claypot.core.CLPCommandContextType;
 import com.io7m.jspearmint.disassembly.api.SMDisassemblerConfiguration;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 @Parameters(commandDescription = "Disassemble SPIR-V bytecode")
-public final class SMCommandDisassemble extends SMCommandRoot
+public final class SMCommandDisassemble extends CLPAbstractCommand
 {
   @Parameter(
     description = "The input file.",
@@ -33,13 +35,20 @@ public final class SMCommandDisassemble extends SMCommandRoot
   )
   private Path inputFile;
 
-  public SMCommandDisassemble()
+  public SMCommandDisassemble(
+    final CLPCommandContextType context)
   {
-
+    super(context);
   }
 
   @Override
-  public Status execute()
+  public String name()
+  {
+    return "disassemble";
+  }
+
+  @Override
+  public Status executeActual()
     throws Exception
   {
     if (super.execute() == Status.FAILURE) {

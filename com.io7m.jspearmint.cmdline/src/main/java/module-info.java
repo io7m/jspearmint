@@ -27,6 +27,7 @@ module com.io7m.jspearmint.cmdline
   requires com.io7m.jspearmint.api;
   requires com.io7m.jspearmint.parser.api;
   requires com.io7m.jspearmint.disassembly.api;
+  requires com.io7m.claypot.core;
   requires jcommander;
   requires org.slf4j;
 
