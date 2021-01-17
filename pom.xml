@@ -33,12 +33,11 @@
   </modules>
 
   <properties>
-    <com.codacy.id>ec405841decf4a589335aada10acb94d</com.codacy.id>
-    <com.io7m.jbssio.version>0.0.3</com.io7m.jbssio.version>
+    <com.io7m.jbssio.version>1.1.0</com.io7m.jbssio.version>
     <com.io7m.xstructural.version>0.0.1</com.io7m.xstructural.version>
     <io7m.api.previousVersion>0.0.1-SNAPSHOT</io7m.api.previousVersion>
     <io7m.org.immutables.version>2.8.8</io7m.org.immutables.version>
-    <jackson.version>2.11.3</jackson.version>
+    <jackson.version>2.12.1</jackson.version>
     <junit.version>5.7.0</junit.version>
   </properties>
 
@@ -91,12 +90,12 @@
       <dependency>
         <groupId>org.osgi</groupId>
         <artifactId>org.osgi.annotation.bundle</artifactId>
-        <version>1.0.0</version>
+        <version>1.1.0</version>
       </dependency>
       <dependency>
         <groupId>org.osgi</groupId>
         <artifactId>org.osgi.annotation.versioning</artifactId>
-        <version>1.1.0</version>
+        <version>1.1.1</version>
       </dependency>
       <dependency>
         <groupId>org.osgi</groupId>
@@ -166,7 +165,7 @@
       <dependency>
         <groupId>nl.jqno.equalsverifier</groupId>
         <artifactId>equalsverifier</artifactId>
-        <version>3.4.3</version>
+        <version>3.5.1</version>
       </dependency>
       <dependency>
         <groupId>com.io7m.primogenitor</groupId>
@@ -176,7 +175,7 @@
       <dependency>
         <groupId>com.io7m.xstructural</groupId>
         <artifactId>com.io7m.xstructural.cmdline</artifactId>
-        <version>0.0.4</version>
+        <version>1.2.0</version>
       </dependency>
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
@@ -196,7 +195,7 @@
       <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
-        <version>3.5.13</version>
+        <version>3.7.7</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

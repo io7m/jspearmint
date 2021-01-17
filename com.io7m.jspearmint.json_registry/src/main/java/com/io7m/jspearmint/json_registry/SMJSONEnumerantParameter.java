@@ -40,6 +40,12 @@ public final class SMJSONEnumerantParameter
   )
   public String name = "";
 
+  @JsonProperty(
+    required = false,
+    value = "quantifier"
+  )
+  public String quantifier = "";
+
   public SMJSONEnumerantParameter()
   {
 
