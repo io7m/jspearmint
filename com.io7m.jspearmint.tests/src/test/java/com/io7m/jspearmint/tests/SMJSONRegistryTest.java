@@ -61,9 +61,9 @@ public final class SMJSONRegistryTest
       Assertions.assertEquals("0x07230203", registry.magicNumber);
       Assertions.assertEquals(BigInteger.ONE, registry.majorVersion);
       Assertions.assertEquals(BigInteger.valueOf(5L), registry.minorVersion);
-      Assertions.assertEquals(564, registry.instructions.size());
+      Assertions.assertEquals(576, registry.instructions.size());
       Assertions.assertEquals(26, registry.instructionClasses.size());
-      Assertions.assertEquals(48, registry.operandKinds.size());
+      Assertions.assertEquals(50, registry.operandKinds.size());
     }
   }
 }
