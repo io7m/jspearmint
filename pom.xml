@@ -170,7 +170,7 @@
       <dependency>
         <groupId>nl.jqno.equalsverifier</groupId>
         <artifactId>equalsverifier</artifactId>
-        <version>3.5.1</version>
+        <version>3.9</version>
       </dependency>
       <dependency>
         <groupId>com.io7m.primogenitor</groupId>
@@ -180,7 +180,7 @@
       <dependency>
         <groupId>com.io7m.xstructural</groupId>
         <artifactId>com.io7m.xstructural.cmdline</artifactId>
-        <version>1.2.0</version>
+        <version>1.4.0</version>
       </dependency>
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>

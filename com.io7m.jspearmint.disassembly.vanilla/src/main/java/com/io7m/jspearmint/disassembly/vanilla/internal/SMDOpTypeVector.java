@@ -21,9 +21,16 @@ import com.io7m.jspearmint.parser.api.SMParsedInstruction;
 
 import java.util.List;
 
+/**
+ * OpTypeVector
+ */
+
 public final class SMDOpTypeVector
   extends SMDAbstractOpDisassembler
 {
+  /**
+   * Construct an op.
+   */
   public SMDOpTypeVector()
   {
     super(SMInstruction.SM_OP_TYPE_VECTOR);

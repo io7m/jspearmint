@@ -22,9 +22,17 @@ import com.io7m.jspearmint.parser.api.SMParsedInstruction;
 
 import java.util.List;
 
+/**
+ * OpCapability.
+ */
+
 public final class SMDOpCapability
   extends SMDAbstractOpDisassembler
 {
+  /**
+   * Construct an op.
+   */
+
   public SMDOpCapability()
   {
     super(SMInstruction.SM_OP_CAPABILITY);

@@ -23,7 +23,7 @@ import com.io7m.jspearmint.disassembly.api.SMDisassemblerConfiguration;
 
 import java.util.Objects;
 
-public final class SMOpDisassemblerContext
+final class SMOpDisassemblerContext
   implements SMOpDisassemblerContextType
 {
   private final SMIdentifiers identifiers;

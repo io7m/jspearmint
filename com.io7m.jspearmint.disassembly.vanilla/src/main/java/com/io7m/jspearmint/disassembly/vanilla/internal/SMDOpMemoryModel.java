@@ -23,9 +23,16 @@ import com.io7m.jspearmint.parser.api.SMParsedInstruction;
 
 import java.util.List;
 
+/**
+ * OpMemoryModel
+ */
+
 public final class SMDOpMemoryModel
   extends SMDAbstractOpDisassembler
 {
+  /**
+   * Construct an op.
+   */
   public SMDOpMemoryModel()
   {
     super(SMInstruction.SM_OP_MEMORY_MODEL);

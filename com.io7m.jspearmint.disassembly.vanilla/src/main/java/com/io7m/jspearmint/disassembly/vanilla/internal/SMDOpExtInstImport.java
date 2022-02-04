@@ -22,9 +22,16 @@ import com.io7m.jspearmint.parser.api.SMParsedInstruction;
 
 import java.util.List;
 
+/**
+ * OpExtInstImport
+ */
+
 public final class SMDOpExtInstImport
   extends SMDAbstractOpDisassembler
 {
+  /**
+   * Construct an op.
+   */
   public SMDOpExtInstImport()
   {
     super(SMInstruction.SM_OP_EXT_INST_IMPORT);

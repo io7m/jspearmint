@@ -26,6 +26,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * Functions to consume types from streams.
+ */
+
 public final class SMTypes
 {
   private final Map<Long, SMInstruction> idToType;
@@ -36,10 +40,14 @@ public final class SMTypes
     this.idToType = Objects.requireNonNull(inIdToType, "inIdToType");
   }
 
-  public Map<Long, SMInstruction> idToType()
-  {
-    return this.idToType;
-  }
+  /**
+   * Consume types from a stream.
+   *
+   * @param header       The parsed header
+   * @param instructions The instruction stream
+   *
+   * @return A set of types
+   */
 
   public static SMTypes of(
     final SMParsedHeader header,
@@ -80,5 +88,14 @@ public final class SMTypes
     return new SMTypes(
       Map.copyOf(idToType)
     );
+  }
+
+  /**
+   * @return The type for the given ID
+   */
+
+  public Map<Long, SMInstruction> idToType()
+  {
+    return this.idToType;
   }
 }

@@ -27,6 +27,10 @@ import java.nio.file.Path;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+/**
+ * The main program that generates instruction enums.
+ */
+
 public final class SMGenerateInstructionEnumMain
 {
   private static final Logger LOG =
@@ -36,6 +40,14 @@ public final class SMGenerateInstructionEnumMain
   {
 
   }
+
+  /**
+   * Command-line entry point.
+   *
+   * @param args Command-line arguments
+   *
+   * @throws Exception On errors
+   */
 
   public static void main(
     final String[] args)

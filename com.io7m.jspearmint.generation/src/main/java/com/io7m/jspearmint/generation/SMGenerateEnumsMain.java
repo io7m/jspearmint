@@ -28,6 +28,10 @@ import java.nio.file.Path;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+/**
+ * The main program that generates enums.
+ */
+
 public final class SMGenerateEnumsMain
 {
   private static final Logger LOG =
@@ -37,6 +41,14 @@ public final class SMGenerateEnumsMain
   {
 
   }
+
+  /**
+   * Command-line entry point.
+   *
+   * @param args Command-line arguments
+   *
+   * @throws Exception On errors
+   */
 
   public static void main(
     final String[] args)

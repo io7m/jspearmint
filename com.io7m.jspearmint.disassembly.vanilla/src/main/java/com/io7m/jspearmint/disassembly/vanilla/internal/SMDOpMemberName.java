@@ -22,9 +22,16 @@ import com.io7m.jspearmint.parser.api.SMParsedInstruction;
 
 import java.util.List;
 
+/**
+ * OpMemberName
+ */
+
 public final class SMDOpMemberName
   extends SMDAbstractOpDisassembler
 {
+  /**
+   * Construct an op.
+   */
   public SMDOpMemberName()
   {
     super(SMInstruction.SM_OP_MEMBER_NAME);

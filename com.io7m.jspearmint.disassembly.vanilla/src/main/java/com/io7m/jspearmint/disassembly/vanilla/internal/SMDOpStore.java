@@ -23,9 +23,16 @@ import com.io7m.jspearmint.parser.api.SMParsedInstruction;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * OpStore
+ */
+
 public final class SMDOpStore
   extends SMDAbstractOpDisassembler
 {
+  /**
+   * Construct an op.
+   */
   public SMDOpStore()
   {
     super(SMInstruction.SM_OP_STORE);

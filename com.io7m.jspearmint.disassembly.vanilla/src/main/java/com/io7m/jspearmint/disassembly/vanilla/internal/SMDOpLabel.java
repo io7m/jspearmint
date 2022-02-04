@@ -21,9 +21,16 @@ import com.io7m.jspearmint.parser.api.SMParsedInstruction;
 
 import java.util.List;
 
+/**
+ * OpLabel
+ */
+
 public final class SMDOpLabel
   extends SMDAbstractOpDisassembler
 {
+  /**
+   * Construct an op.
+   */
   public SMDOpLabel()
   {
     super(SMInstruction.SM_OP_LABEL);

@@ -16,6 +16,10 @@
 
 package com.io7m.jspearmint.api;
 
+/**
+ * The base type of value enums.
+ */
+
 public interface SMValueEnumType extends SMEnumType
 {
 

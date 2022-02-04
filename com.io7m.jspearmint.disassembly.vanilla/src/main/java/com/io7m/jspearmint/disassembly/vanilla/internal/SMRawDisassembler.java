@@ -23,10 +23,18 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * A disassembler that only prints numbers.
+ */
+
 public final class SMRawDisassembler implements SMOpDisassemblerType
 {
   private static final Logger LOG =
     LoggerFactory.getLogger(SMRawDisassembler.class);
+
+  /**
+   * A disassembler that only prints numbers.
+   */
 
   public SMRawDisassembler()
   {

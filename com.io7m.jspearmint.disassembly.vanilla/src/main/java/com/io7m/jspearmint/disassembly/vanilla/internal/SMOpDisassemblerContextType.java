@@ -18,20 +18,49 @@ package com.io7m.jspearmint.disassembly.vanilla.internal;
 
 import com.io7m.jspearmint.analysis.SMString;
 
+/**
+ * A disassembler context.
+ */
+
 public interface SMOpDisassemblerContextType
 {
+  /**
+   * @param id The ID
+   *
+   * @return The string of the given ID
+   */
+
   String idString(
     Long id
   );
+
+  /**
+   * @param value The value
+   *
+   * @return The literal of the given value
+   */
 
   String literal(
     Long value
   );
 
+  /**
+   * @param value The value
+   * @param type  The type
+   *
+   * @return The typed literal of the given value
+   */
+
   String literalTyped(
     Long type,
     Long value
   );
+
+  /**
+   * @param name The name
+   *
+   * @return The quoted string of the given value
+   */
 
   String quoteString(
     SMString name

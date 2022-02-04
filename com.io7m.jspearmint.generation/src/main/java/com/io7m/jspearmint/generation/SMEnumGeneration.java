@@ -33,12 +33,25 @@ import static javax.lang.model.element.Modifier.PRIVATE;
 import static javax.lang.model.element.Modifier.PUBLIC;
 import static javax.lang.model.element.Modifier.STATIC;
 
+/**
+ * Functions to generate enum declarations.
+ */
+
 public final class SMEnumGeneration
 {
   private SMEnumGeneration()
   {
 
   }
+
+  /**
+   * Generate enum types.
+   *
+   * @param packageName The package name
+   * @param kind        The operand kind
+   *
+   * @return An enum type
+   */
 
   public static TypeSpec generate(
     final String packageName,
@@ -80,10 +93,10 @@ public final class SMEnumGeneration
       typeBuilder.addEnumConstant(
         transformEnumConstantName(enumConstant.enumerant),
         TypeSpec.anonymousClassBuilder(
-          "$L,$S",
-          enumConstant.value,
-          enumConstant.enumerant
-        ).addJavadoc(enumConstant.enumerant)
+            "$L,$S",
+            enumConstant.value,
+            enumConstant.enumerant
+          ).addJavadoc(enumConstant.enumerant)
           .build()
       );
     }

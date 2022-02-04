@@ -22,9 +22,17 @@ import com.io7m.jspearmint.parser.api.SMParsedInstruction;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * OpAccessChain
+ */
+
 public final class SMDOpAccessChain
   extends SMDAbstractOpDisassembler
 {
+  /**
+   * Construct an op.
+   */
+
   public SMDOpAccessChain()
   {
     super(SMInstruction.SM_OP_ACCESS_CHAIN);

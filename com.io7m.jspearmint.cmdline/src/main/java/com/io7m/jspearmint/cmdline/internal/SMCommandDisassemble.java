@@ -25,6 +25,10 @@ import com.io7m.jspearmint.disassembly.api.SMDisassemblerConfiguration;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+/**
+ * Disassemble a file.
+ */
+
 @Parameters(commandDescription = "Disassemble SPIR-V bytecode")
 public final class SMCommandDisassemble extends CLPAbstractCommand
 {
@@ -34,6 +38,12 @@ public final class SMCommandDisassemble extends CLPAbstractCommand
     required = true
   )
   private Path inputFile;
+
+  /**
+   * Construct a command.
+   *
+   * @param context The context
+   */
 
   public SMCommandDisassemble(
     final CLPCommandContextType context)

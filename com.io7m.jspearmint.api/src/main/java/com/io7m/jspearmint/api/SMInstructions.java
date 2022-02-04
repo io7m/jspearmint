@@ -20,25 +20,35 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * A registry of instructions.
+ */
+
 public final class SMInstructions
 {
+  private static final Map<Long, SMInstruction> BY_OPCODE =
+    makeByOpCode();
+
   private SMInstructions()
   {
 
   }
-
-  private static final Map<Long, SMInstruction> BY_OPCODE =
-    makeByOpCode();
 
   private static Map<Long, SMInstruction> makeByOpCode()
   {
     final var values = SMInstruction.values();
     final var byOpCode = new HashMap<Long, SMInstruction>(values.length);
     for (final var value : values) {
-      byOpCode.put(Long.valueOf((long) value.value()), value);
+      byOpCode.put(Long.valueOf(value.value()), value);
     }
     return Map.copyOf(byOpCode);
   }
+
+  /**
+   * @param opCode The opcode
+   *
+   * @return The instruction associated with the opcode
+   */
 
   public static Optional<SMInstruction> byOpCode(
     final long opCode)

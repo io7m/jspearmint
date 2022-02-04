@@ -21,9 +21,16 @@ import com.io7m.jspearmint.parser.api.SMParsedInstruction;
 
 import java.util.List;
 
+/**
+ * OpTypeStruct
+ */
+
 public final class SMDOpTypeStruct
   extends SMDAbstractOpDisassembler
 {
+  /**
+   * Construct an op.
+   */
   public SMDOpTypeStruct()
   {
     super(SMInstruction.SM_OP_TYPE_STRUCT);

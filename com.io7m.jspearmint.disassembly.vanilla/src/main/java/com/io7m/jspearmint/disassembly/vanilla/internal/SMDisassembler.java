@@ -37,8 +37,16 @@ import static com.io7m.jspearmint.api.SMOperandKind.SM_ID_RESULT;
 import static com.io7m.jspearmint.api.SMOperandKind.SM_ID_RESULT_TYPE;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+/**
+ * A basic disassembler.
+ */
+
 public final class SMDisassembler implements SMDisassemblerType
 {
+  /**
+   * A basic disassembler.
+   */
+
   public SMDisassembler()
   {
 

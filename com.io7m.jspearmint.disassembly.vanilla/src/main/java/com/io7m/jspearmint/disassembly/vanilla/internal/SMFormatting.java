@@ -19,6 +19,10 @@ package com.io7m.jspearmint.disassembly.vanilla.internal;
 import com.io7m.jspearmint.analysis.SMString;
 import org.apache.commons.text.StringEscapeUtils;
 
+/**
+ * Functions to perform formatting.
+ */
+
 public final class SMFormatting
 {
   private SMFormatting()
@@ -26,11 +30,23 @@ public final class SMFormatting
 
   }
 
+  /**
+   * @param id The ID
+   *
+   * @return The string of the given ID
+   */
+
   public static String idString(
     final Integer id)
   {
     return idString(id.intValue());
   }
+
+  /**
+   * @param id The ID
+   *
+   * @return The string of the given ID
+   */
 
   public static String idString(
     final Long id)
@@ -38,11 +54,23 @@ public final class SMFormatting
     return idString(id.longValue());
   }
 
+  /**
+   * @param id The ID
+   *
+   * @return The string of the given ID
+   */
+
   public static String idString(
     final int id)
   {
     return "%" + id;
   }
+
+  /**
+   * @param id The ID
+   *
+   * @return The string of the given ID
+   */
 
   public static String idString(
     final long id)
@@ -50,11 +78,23 @@ public final class SMFormatting
     return "%" + id;
   }
 
+  /**
+   * @param text The text
+   *
+   * @return The quoted string of the given value
+   */
+
   public static String quoteString(
     final String text)
   {
     return '"' + StringEscapeUtils.escapeJava(text) + '"';
   }
+
+  /**
+   * @param text The text
+   *
+   * @return The quoted string of the given value
+   */
 
   public static String quoteString(
     final SMString text)
@@ -62,20 +102,44 @@ public final class SMFormatting
     return quoteString(text.text());
   }
 
+  /**
+   * @param value The value
+   *
+   * @return The literal of the given value
+   */
+
   public static String literal(final long value)
   {
     return "$" + Long.toUnsignedString(value);
   }
+
+  /**
+   * @param value The value
+   *
+   * @return The literal of the given value
+   */
 
   public static String literal(final Long value)
   {
     return literal(value.longValue());
   }
 
+  /**
+   * @param value The value
+   *
+   * @return The literal of the given value
+   */
+
   public static String literalFloat(final long value)
   {
     return "$" + Float.intBitsToFloat((int) value);
   }
+
+  /**
+   * @param value The value
+   *
+   * @return The literal of the given value
+   */
 
   public static String literalFloat(final Long value)
   {

@@ -21,9 +21,16 @@ import com.io7m.jspearmint.parser.api.SMParsedInstruction;
 
 import java.util.List;
 
+/**
+ * OpTypeFloat
+ */
+
 public final class SMDOpTypeFloat
   extends SMDAbstractOpDisassembler
 {
+  /**
+   * Construct an op.
+   */
   public SMDOpTypeFloat()
   {
     super(SMInstruction.SM_OP_TYPE_FLOAT);

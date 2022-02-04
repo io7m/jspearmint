@@ -24,9 +24,16 @@ import com.io7m.jspearmint.parser.api.SMParsedInstruction;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * OpEntryPoint
+ */
+
 public final class SMDOpEntryPoint
   extends SMDAbstractOpDisassembler
 {
+  /**
+   * Construct an op.
+   */
   public SMDOpEntryPoint()
   {
     super(SMInstruction.SM_OP_ENTRY_POINT);

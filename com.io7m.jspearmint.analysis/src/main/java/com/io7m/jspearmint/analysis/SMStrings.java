@@ -25,12 +25,25 @@ import java.util.Objects;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+/**
+ * Functions over strings.
+ */
+
 public final class SMStrings
 {
   private SMStrings()
   {
 
   }
+
+  /**
+   * Consume a UTF-8 string.
+   *
+   * @param operands The list of operands
+   * @param index    The index
+   *
+   * @return A string
+   */
 
   public static SMString consumeUTF8String(
     final List<Long> operands,
@@ -51,22 +64,22 @@ public final class SMStrings
         if ((int) byte0 == 0) {
           break;
         }
-        outputStream.write((int) byte0);
+        outputStream.write(byte0);
         final byte byte1 = buffer.get(1);
         if ((int) byte1 == 0) {
           break;
         }
-        outputStream.write((int) byte1);
+        outputStream.write(byte1);
         final byte byte2 = buffer.get(2);
         if ((int) byte2 == 0) {
           break;
         }
-        outputStream.write((int) byte2);
+        outputStream.write(byte2);
         final byte byte3 = buffer.get(3);
         if ((int) byte3 == 0) {
           break;
         }
-        outputStream.write((int) byte3);
+        outputStream.write(byte3);
         ++wordsUsed;
       }
       return SMString.builder()
@@ -82,7 +95,7 @@ public final class SMStrings
     final ByteArrayOutputStream outputStream)
   {
     // CHECKSTYLE:OFF
-    return new String(outputStream.toByteArray(), UTF_8).trim();
+    return outputStream.toString(UTF_8).trim();
     // CHECKSTYLE:ON
   }
 }

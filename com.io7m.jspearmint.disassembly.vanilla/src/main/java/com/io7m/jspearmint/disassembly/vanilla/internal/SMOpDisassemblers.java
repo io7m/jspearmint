@@ -27,7 +27,7 @@ import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-public final class SMOpDisassemblers
+final class SMOpDisassemblers
 {
   private static final List<SMDAbstractOpDisassembler> OP_DISASSEMBLERS =
     List.of(

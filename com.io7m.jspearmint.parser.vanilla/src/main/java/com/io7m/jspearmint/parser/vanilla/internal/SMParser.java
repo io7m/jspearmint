@@ -33,6 +33,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * The default parser implementation.
+ */
+
 public final class SMParser implements SMParserType
 {
   private static final Logger LOGGER =
@@ -65,6 +69,17 @@ public final class SMParser implements SMParserType
     this.bigEndian = inBigEndian;
     this.header = Objects.requireNonNull(inHeader, "inHeader");
   }
+
+  /**
+   * Create a parser.
+   *
+   * @param reader The input reader
+   *
+   * @return A new parser
+   *
+   * @throws IOException      On errors
+   * @throws SMParseException On errors
+   */
 
   public static SMParser create(
     final BSSReaderSequentialType reader)

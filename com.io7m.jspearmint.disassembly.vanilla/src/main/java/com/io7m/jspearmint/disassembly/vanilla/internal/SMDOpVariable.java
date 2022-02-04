@@ -23,9 +23,16 @@ import com.io7m.jspearmint.parser.api.SMParsedInstruction;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * OpVariable
+ */
+
 public final class SMDOpVariable
   extends SMDAbstractOpDisassembler
 {
+  /**
+   * Construct an op.
+   */
   public SMDOpVariable()
   {
     super(SMInstruction.SM_OP_VARIABLE);

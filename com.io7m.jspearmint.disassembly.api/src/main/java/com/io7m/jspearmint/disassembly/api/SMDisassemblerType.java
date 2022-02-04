@@ -45,7 +45,6 @@ public interface SMDisassemblerType extends Closeable
     SMDisassemblerConfiguration configuration,
     SMParsedHeader header,
     List<SMParsedInstruction> instructions,
-    OutputStream out
-  )
+    OutputStream out)
     throws IOException;
 }

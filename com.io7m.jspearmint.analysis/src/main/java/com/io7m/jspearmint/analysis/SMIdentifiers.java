@@ -27,6 +27,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * A set of identifiers.
+ */
+
 public final class SMIdentifiers
 {
   private static final Logger LOG =
@@ -44,22 +48,13 @@ public final class SMIdentifiers
   }
 
   /**
-   * @return A mapping of names to ids
+   * Collect identifiers.
+   *
+   * @param header       The parsed header
+   * @param instructions The instructions
+   *
+   * @return A set of identifiers
    */
-
-  public Map<String, Long> nameToId()
-  {
-    return this.nameToId;
-  }
-
-  /**
-   * @return A mapping of ids to names
-   */
-
-  public Map<Long, String> idToName()
-  {
-    return this.idToName;
-  }
 
   public static SMIdentifiers of(
     final SMParsedHeader header,
@@ -107,6 +102,24 @@ public final class SMIdentifiers
       Map.copyOf(nameToId),
       Map.copyOf(idToName)
     );
+  }
+
+  /**
+   * @return A mapping of names to ids
+   */
+
+  public Map<String, Long> nameToId()
+  {
+    return this.nameToId;
+  }
+
+  /**
+   * @return A mapping of ids to names
+   */
+
+  public Map<Long, String> idToName()
+  {
+    return this.idToName;
   }
 
 }

@@ -21,9 +21,16 @@ import com.io7m.jspearmint.parser.api.SMParsedInstruction;
 
 import java.util.List;
 
+/**
+ * OpTypeInt
+ */
+
 public final class SMDOpTypeInt
   extends SMDAbstractOpDisassembler
 {
+  /**
+   * Construct an op.
+   */
   public SMDOpTypeInt()
   {
     super(SMInstruction.SM_OP_TYPE_INT);

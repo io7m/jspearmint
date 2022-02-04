@@ -23,9 +23,19 @@ import com.io7m.claypot.core.CLPCommandContextType;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * Show the application version.
+ */
+
 @Parameters(commandDescription = "Show the application version")
 public final class SMCommandVersion extends CLPAbstractCommand
 {
+  /**
+   * Construct a command.
+   *
+   * @param context The context
+   */
+
   public SMCommandVersion(
     final CLPCommandContextType context)
   {

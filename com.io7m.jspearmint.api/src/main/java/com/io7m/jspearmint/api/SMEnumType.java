@@ -16,7 +16,16 @@
 
 package com.io7m.jspearmint.api;
 
+/**
+ * The base type of enums.
+ */
+
+
 public interface SMEnumType
 {
+  /**
+   * @return The enum value
+   */
+
   int value();
 }

@@ -21,9 +21,16 @@ import com.io7m.jspearmint.parser.api.SMParsedInstruction;
 
 import java.util.List;
 
+/**
+ * OpReturn
+ */
+
 public final class SMDOpReturn
   extends SMDAbstractOpDisassembler
 {
+  /**
+   * Construct an op.
+   */
   public SMDOpReturn()
   {
     super(SMInstruction.SM_OP_RETURN);

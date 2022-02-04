@@ -22,11 +22,11 @@ import com.io7m.jspearmint.parser.api.SMParsedInstruction;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class SMDAbstractOpDisassembler implements SMOpDisassemblerType
+abstract class SMDAbstractOpDisassembler implements SMOpDisassemblerType
 {
   private final SMInstruction instruction;
 
-  public SMDAbstractOpDisassembler(
+  SMDAbstractOpDisassembler(
     final SMInstruction inInstructionDefinition)
   {
     this.instruction =

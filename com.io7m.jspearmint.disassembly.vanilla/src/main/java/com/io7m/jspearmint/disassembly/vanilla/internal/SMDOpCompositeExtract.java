@@ -22,9 +22,16 @@ import com.io7m.jspearmint.parser.api.SMParsedInstruction;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * OpCompositeExtract
+ */
+
 public final class SMDOpCompositeExtract
   extends SMDAbstractOpDisassembler
 {
+  /**
+   * Construct an op.
+   */
   public SMDOpCompositeExtract()
   {
     super(SMInstruction.SM_OP_COMPOSITE_EXTRACT);

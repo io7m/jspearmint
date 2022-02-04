@@ -23,9 +23,16 @@ import com.io7m.jspearmint.parser.api.SMParsedInstruction;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * OpMemberDecorate
+ */
+
 public final class SMDOpMemberDecorate
   extends SMDAbstractOpDisassembler
 {
+  /**
+   * Construct an op.
+   */
   public SMDOpMemberDecorate()
   {
     super(SMInstruction.SM_OP_MEMBER_DECORATE);

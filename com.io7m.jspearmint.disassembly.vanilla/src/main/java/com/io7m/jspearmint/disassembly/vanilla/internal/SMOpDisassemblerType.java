@@ -20,7 +20,7 @@ import com.io7m.jspearmint.parser.api.SMParsedInstruction;
 
 import java.util.List;
 
-public interface SMOpDisassemblerType
+interface SMOpDisassemblerType
 {
   List<String> disassemble(
     SMOpDisassemblerContextType context,

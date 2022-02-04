@@ -27,6 +27,10 @@ import java.nio.file.Path;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+/**
+ * The main program that generates operand kind enums.
+ */
+
 public final class SMGenerateOperandKindEnumMain
 {
   private static final Logger LOG =
@@ -36,6 +40,14 @@ public final class SMGenerateOperandKindEnumMain
   {
 
   }
+
+  /**
+   * Command-line entry point.
+   *
+   * @param args Command-line arguments
+   *
+   * @throws Exception On errors
+   */
 
   public static void main(
     final String[] args)

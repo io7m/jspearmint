@@ -22,9 +22,17 @@ import com.io7m.jspearmint.parser.api.SMParsedInstruction;
 
 import java.util.List;
 
+/**
+ * OpTypePointer
+ */
+
 public final class SMDOpTypePointer
   extends SMDAbstractOpDisassembler
 {
+  /**
+   * Construct an op.
+   */
+
   public SMDOpTypePointer()
   {
     super(SMInstruction.SM_OP_TYPE_POINTER);

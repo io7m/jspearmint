@@ -19,11 +19,23 @@ package com.io7m.jspearmint.analysis;
 import com.io7m.immutables.styles.ImmutablesStyleType;
 import org.immutables.value.Value;
 
+/**
+ * The type of SPIR-V strings.
+ */
+
 @ImmutablesStyleType
 @Value.Immutable
 public interface SMStringType
 {
+  /**
+   * @return The number of words consumed for the string
+   */
+
   int usedWords();
+
+  /**
+   * @return The string text
+   */
 
   String text();
 }

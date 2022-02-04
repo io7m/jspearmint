@@ -32,12 +32,25 @@ import static javax.lang.model.element.Modifier.FINAL;
 import static javax.lang.model.element.Modifier.PRIVATE;
 import static javax.lang.model.element.Modifier.PUBLIC;
 
+/**
+ * Functions to generate operand kind enums.
+ */
+
 public final class SMOperandKindEnumGeneration
 {
   private SMOperandKindEnumGeneration()
   {
 
   }
+
+  /**
+   * Generate operand kind enums.
+   *
+   * @param packageName  The package name
+   * @param operandKinds The operand kind
+   *
+   * @return An instruction enum
+   */
 
   public static TypeSpec generate(
     final String packageName,
@@ -59,10 +72,10 @@ public final class SMOperandKindEnumGeneration
       typeBuilder.addEnumConstant(
         transformEnumConstantName(operandKind.kind),
         TypeSpec.anonymousClassBuilder(
-          "$L,$S",
-          Integer.valueOf(index),
-          operandKind.kind
-        ).addJavadoc(operandJavaDoc(operandKind))
+            "$L,$S",
+            Integer.valueOf(index),
+            operandKind.kind
+          ).addJavadoc(operandJavaDoc(operandKind))
           .build()
       );
     }

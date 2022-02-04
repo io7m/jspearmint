@@ -34,12 +34,25 @@ import static javax.lang.model.element.Modifier.FINAL;
 import static javax.lang.model.element.Modifier.PRIVATE;
 import static javax.lang.model.element.Modifier.PUBLIC;
 
+/**
+ * Functions to generate instruction enums.
+ */
+
 public final class SMInstructionEnumGeneration
 {
   private SMInstructionEnumGeneration()
   {
 
   }
+
+  /**
+   * Generate instruction enums.
+   *
+   * @param packageName  The package name
+   * @param instructions The instructions
+   *
+   * @return An instruction enum
+   */
 
   public static TypeSpec generate(
     final String packageName,
@@ -60,12 +73,12 @@ public final class SMInstructionEnumGeneration
       typeBuilder.addEnumConstant(
         transformEnumConstantName(instruction.name),
         TypeSpec.anonymousClassBuilder(
-          "$L,$S,$L,$L",
-          instruction.opcode,
-          instruction.name,
-          instructionOperandList(packageName, instruction.operands),
-          Integer.valueOf(instructionMinimumOperands(instruction.operands))
-        ).addJavadoc(instruction.name)
+            "$L,$S,$L,$L",
+            instruction.opcode,
+            instruction.name,
+            instructionOperandList(packageName, instruction.operands),
+            Integer.valueOf(instructionMinimumOperands(instruction.operands))
+          ).addJavadoc(instruction.name)
           .build()
       );
     }
@@ -161,6 +174,14 @@ public final class SMInstructionEnumGeneration
         throw new IllegalStateException("Unrecognized qualifier");
     }
   }
+
+  /**
+   * Transform an enum constant name.
+   *
+   * @param constantName The raw name
+   *
+   * @return A transformed name
+   */
 
   public static String transformEnumConstantName(
     final String constantName)

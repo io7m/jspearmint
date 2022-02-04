@@ -16,6 +16,10 @@
 
 package com.io7m.jspearmint.api;
 
+/**
+ * The base type of bit enums.
+ */
+
 public interface SMBitEnumType extends SMEnumType
 {
 

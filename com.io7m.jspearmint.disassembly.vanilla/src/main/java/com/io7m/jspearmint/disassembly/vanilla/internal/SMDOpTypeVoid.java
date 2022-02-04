@@ -21,9 +21,16 @@ import com.io7m.jspearmint.parser.api.SMParsedInstruction;
 
 import java.util.List;
 
+/**
+ * OpTypeVoid
+ */
+
 public final class SMDOpTypeVoid
   extends SMDAbstractOpDisassembler
 {
+  /**
+   * Construct an op.
+   */
   public SMDOpTypeVoid()
   {
     super(SMInstruction.SM_OP_TYPE_VOID);

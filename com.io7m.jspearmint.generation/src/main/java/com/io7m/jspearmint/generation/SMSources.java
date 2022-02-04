@@ -22,6 +22,10 @@ import com.io7m.jspearmint.json_registry.SMJSONRegistry;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * Access to spec sources.
+ */
+
 public final class SMSources
 {
   private SMSources()
@@ -29,12 +33,22 @@ public final class SMSources
 
   }
 
+  /**
+   * @return The spec sources
+   */
+
   public static InputStream sources()
   {
     return SMGenerateInstructionEnumMain.class.getResourceAsStream(
       "/com/io7m/jspearmint/generation/spirv_headers/include/spirv/unified1/spirv.core.grammar.json"
     );
   }
+
+  /**
+   * @return A JSON registry
+   *
+   * @throws IOException On I/O errors
+   */
 
   public static SMJSONRegistry registry()
     throws IOException
