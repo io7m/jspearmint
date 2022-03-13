@@ -1,5 +1,5 @@
 /*
- * Copyright © 2020 Mark Raynsford <code@io7m.com> http://io7m.com
+ * Copyright © 2020 Mark Raynsford <code@io7m.com> https://io7m.com
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -60,10 +60,10 @@ public final class SMJSONRegistryTest
 
       Assertions.assertEquals("0x07230203", registry.magicNumber);
       Assertions.assertEquals(BigInteger.ONE, registry.majorVersion);
-      Assertions.assertEquals(BigInteger.valueOf(5L), registry.minorVersion);
-      Assertions.assertEquals(576, registry.instructions.size());
+      Assertions.assertEquals(BigInteger.valueOf(6L), registry.minorVersion);
+      Assertions.assertEquals(659, registry.instructions.size());
       Assertions.assertEquals(26, registry.instructionClasses.size());
-      Assertions.assertEquals(50, registry.operandKinds.size());
+      Assertions.assertEquals(53, registry.operandKinds.size());
     }
   }
 }

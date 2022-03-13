@@ -1,7 +1,7 @@
 jspearmint
 ===
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.io7m.jspearmint/com.io7m.jspearmint.svg?style=flat-square)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.io7m.jspearmint%22)
+[![Maven Central](https://img.shields.io/maven-central/v/com.io7m.jspearmint/com.io7m.jspearmint.svg?style=flat-square)](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.io7m.jspearmint%22)
 [![Maven Central (snapshot)](https://img.shields.io/nexus/s/https/oss.sonatype.org/com.io7m.jspearmint/com.io7m.jspearmint.svg?style=flat-square)](https://oss.sonatype.org/content/repositories/snapshots/com/io7m/jspearmint/)
 [![Codecov](https://img.shields.io/codecov/c/github/io7m/jspearmint.svg?style=flat-square)](https://codecov.io/gh/io7m/jspearmint)
 
