@@ -37,7 +37,7 @@
     <com.io7m.xstructural.version>0.0.1</com.io7m.xstructural.version>
     <io7m.api.previousVersion>0.0.1-SNAPSHOT</io7m.api.previousVersion>
     <io7m.org.immutables.version>2.8.8</io7m.org.immutables.version>
-    <jackson.version>2.12.1</jackson.version>
+    <jackson.version>2.13.2.1</jackson.version>
     <junit.version>5.7.0</junit.version>
   </properties>
 
