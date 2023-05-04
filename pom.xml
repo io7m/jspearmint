@@ -33,17 +33,17 @@
   </modules>
 
   <properties>
-    <com.io7m.jbssio.version>1.1.1</com.io7m.jbssio.version>
+    <com.io7m.jbssio.version>2.0.0</com.io7m.jbssio.version>
     <com.io7m.xstructural.version>0.0.1</com.io7m.xstructural.version>
     <io7m.api.previousVersion>0.0.1-SNAPSHOT</io7m.api.previousVersion>
-    <io7m.org.immutables.version>2.9.0</io7m.org.immutables.version>
-    <jackson.version>2.13.2</jackson.version>
-    <junit.version>5.8.2</junit.version>
+    <io7m.org.immutables.version>2.9.3</io7m.org.immutables.version>
+    <jackson.version>2.15.0</jackson.version>
+    <junit.version>5.9.3</junit.version>
   </properties>
 
   <licenses>
     <license>
-      <name>ISC License</name>
+      <name>ISC</name>
       <url>https://www.io7m.com/license/isc.txt</url>
     </license>
   </licenses>
@@ -100,7 +100,7 @@
       <dependency>
         <groupId>org.osgi</groupId>
         <artifactId>org.osgi.service.component.annotations</artifactId>
-        <version>1.5.0</version>
+        <version>1.5.1</version>
       </dependency>
       <dependency>
         <groupId>org.immutables</groupId>
@@ -130,12 +130,12 @@
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
-        <version>2.0.1</version>
+        <version>2.0.7</version>
       </dependency>
       <dependency>
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-classic</artifactId>
-        <version>1.4.1</version>
+        <version>1.4.7</version>
       </dependency>
       <dependency>
         <groupId>commons-io</groupId>
@@ -145,7 +145,7 @@
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-text</artifactId>
-        <version>1.9</version>
+        <version>1.10.0</version>
       </dependency>
       <dependency>
         <groupId>org.junit.jupiter</groupId>
@@ -170,7 +170,7 @@
       <dependency>
         <groupId>nl.jqno.equalsverifier</groupId>
         <artifactId>equalsverifier</artifactId>
-        <version>3.10</version>
+        <version>3.14.1</version>
       </dependency>
       <dependency>
         <groupId>com.io7m.primogenitor</groupId>
@@ -180,7 +180,7 @@
       <dependency>
         <groupId>com.io7m.xstructural</groupId>
         <artifactId>com.io7m.xstructural.cmdline</artifactId>
-        <version>1.7.2</version>
+        <version>1.8.0</version>
       </dependency>
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
@@ -200,7 +200,7 @@
       <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
-        <version>4.4.0</version>
+        <version>5.3.1</version>
       </dependency>
       <dependency>
         <groupId>org.osgi</groupId>
