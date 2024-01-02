@@ -7,7 +7,7 @@
   <parent>
     <groupId>com.io7m.primogenitor</groupId>
     <artifactId>com.io7m.primogenitor.full</artifactId>
-    <version>7.5.0</version>
+    <version>8.1.0</version>
   </parent>
 
   <groupId>com.io7m.jspearmint</groupId>
@@ -37,7 +37,7 @@
     <com.io7m.xstructural.version>0.0.1</com.io7m.xstructural.version>
     <io7m.api.previousVersion>0.0.1-SNAPSHOT</io7m.api.previousVersion>
     <io7m.org.immutables.version>2.9.3</io7m.org.immutables.version>
-    <jackson.version>2.15.0</jackson.version>
+    <jackson.version>2.15.2</jackson.version>
     <junit.version>5.9.3</junit.version>
   </properties>
 
@@ -140,7 +140,7 @@
       <dependency>
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
-        <version>2.11.0</version>
+        <version>2.13.0</version>
       </dependency>
       <dependency>
         <groupId>org.apache.commons</groupId>
@@ -170,12 +170,12 @@
       <dependency>
         <groupId>nl.jqno.equalsverifier</groupId>
         <artifactId>equalsverifier</artifactId>
-        <version>3.14.1</version>
+        <version>3.14.2</version>
       </dependency>
       <dependency>
         <groupId>com.io7m.primogenitor</groupId>
         <artifactId>com.io7m.primogenitor.support</artifactId>
-        <version>7.5.0</version>
+        <version>8.1.0</version>
       </dependency>
       <dependency>
         <groupId>com.io7m.xstructural</groupId>
